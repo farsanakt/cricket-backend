@@ -8,8 +8,33 @@ connectDB()
 
 const app = express()
 
-app.use(cors())
+const allowedOrigins = [
+    'https://cricket-system-frontend.vercel.app/',
+    'http://localhost:5173/',
+    
+    
+];
+
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                console.log(origin, "origin when cors is used");
+                callback(null, origin);
+            } else {
+                console.log(origin, allowedOrigins, "origin when cors is not used");
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true,
+        methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
+
 app.use(express.json())
+
+
 
 app.get("/", (req, res) => {
   res.send("API Running 🚀")

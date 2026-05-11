@@ -17,7 +17,7 @@ const injurySchema = new mongoose.Schema({
 
   status: {
     type: String,
-    enum: ["Active", "ClearanceRequested", "Cleared"],
+    enum: ["active", "ClearanceRequested", "Cleared"],
     default: "Active"
   },
 
