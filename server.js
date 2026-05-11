@@ -9,28 +9,22 @@ connectDB()
 const app = express()
 
 const allowedOrigins = [
-    'https://cricket-system-frontend.vercel.app/',
-    'http://localhost:5173/',
+    'https://cricket-system-frontend.vercel.app',
+    'http://localhost:5173',
     
     
 ];
 
 app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (!origin || allowedOrigins.includes(origin)) {
-                console.log(origin, "origin when cors is used");
-                callback(null, origin);
-            } else {
-                console.log(origin, allowedOrigins, "origin when cors is not used");
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-        credentials: true,
-        methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
+  cors({
+    origin: [  "http://localhost:5173","https://cricket-system-frontend.vercel.app"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 app.use(express.json())
 
