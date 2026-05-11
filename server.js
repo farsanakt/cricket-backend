@@ -16,9 +16,9 @@ app.get("/", (req, res) => {
 })
 
 // Routes
-import authRoutes from "./routes/authroutes.js"
-import playerRoutes from "./routes/playerroutes.js"
-import reportRoutes from "./routes/reportroutes.js"
+import authRoutes from "./routes/authRoutes.js"
+import playerRoutes from "./routes/playerRoutes.js"
+import reportRoutes from "./routes/reportRoutes.js"
 app.use("/api/auth", authRoutes)
 app.use("/api/player", playerRoutes)
 app.use("/api/report", reportRoutes)
