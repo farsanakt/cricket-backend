@@ -38,9 +38,11 @@ app.get("/", (req, res) => {
 import authRoutes from "./routes/authRoutes.js"
 import playerRoutes from "./routes/playerRoutes.js"
 import reportRoutes from "./routes/reportRoutes.js"
+import exercisesRoutes from './routes/exercisesRoutes.js'
 app.use("/api/auth", authRoutes)
 app.use("/api/player", playerRoutes)
 app.use("/api/report", reportRoutes)
+app.use('/api/excercise',exercisesRoutes)
 
 const PORT = process.env.PORT || 5000
 

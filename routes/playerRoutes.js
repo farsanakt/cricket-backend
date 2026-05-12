@@ -5,4 +5,6 @@ const router = express.Router()
 
 router.get("/:id", getPlayerDashboard)
 
+router
+
 export default router
