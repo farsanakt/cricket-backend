@@ -14,8 +14,11 @@ export const createDailyReport = async (req, res) => {
       motivation,
       ballsBowled,
       rpe,
+      note,
       training,
     } = req.body;
+
+    console.log(req.body,'kkoooppppe')
 
     const report = await DailyReport.create({
       player,
@@ -29,6 +32,7 @@ export const createDailyReport = async (req, res) => {
       motivation,
       ballsBowled,
       rpe,
+      note,
       training,
     });
 
@@ -47,3 +51,36 @@ export const createDailyReport = async (req, res) => {
     });
   }
 };
+
+
+export const getAllDailyWellnessReport = async (req, res) => {
+
+  // console.log('hetttte')
+
+  try {
+
+    // console.log(req.params.id, 'koooo')
+
+    const dailyReport = await DailyReport.find({
+      player: req.params.id
+    })
+
+    // console.log(dailyReport, 'this is theee')
+
+    res.status(200).json({
+      success: true,
+      data: dailyReport
+    })
+
+  } catch (error) {
+
+    console.log(error)
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    })
+
+  }
+
+}

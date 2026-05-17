@@ -22,6 +22,8 @@ const dailyReportSchema = new mongoose.Schema(
 
     injury: Boolean,
 
+    note:String,
+
     injuryFile: String,
 
     motivation: Number,
