@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   role: {
     type: String,
-    enum: ["admin", "trainer", "physio", "player", "nutrition"],
+    enum: ["admin", "trainer", "physio", "player", "nutrition","coach"],
   },
   team: {
     type: mongoose.Schema.Types.ObjectId,
