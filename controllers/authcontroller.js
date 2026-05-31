@@ -1,6 +1,8 @@
 import User from "../models/user.js"
+import Coach from "../models/Coach.js";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import { io } from "../server.js";
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body
@@ -17,11 +19,41 @@ export const loginUser = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
-    console.log(isMatch,'pooooo')
+    
 
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid password" })
     }
+   if (user.role === "coach") {
+
+  await Coach.findOneAndUpdate(
+
+    {
+      userId: user._id,
+    },
+
+    {
+      isOnline: true,
+
+      lastSeen: new Date(),
+    }
+  );
+
+  // fetch updated coach
+  const coachData =
+    await Coach.findOne({
+
+      userId: user._id,
+
+    });
+
+  // realtime emit
+  io.emit(
+    "coachLocationUpdated",
+    coachData
+  );
+
+}
 
     const token = jwt.sign(
       { id: user._id, role: user.role },

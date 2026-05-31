@@ -5,7 +5,7 @@ import {
 } from "../controllers/coachController.js";
 import {
   getAllCoaches,
-  getAllCoachLocations,
+  getAllCoachLocations,logoutCoach,
 } from "../controllers/coachController.js";
 
 const router = express.Router();
@@ -19,6 +19,11 @@ router.get("/all", getAllCoaches);
 router.get(
   "/locations",
   getAllCoachLocations
+);
+
+router.post(
+  "/logout",
+  logoutCoach
 );
 
 export default router;
