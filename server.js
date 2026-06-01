@@ -35,6 +35,7 @@ const allowedOrigins = [
 
   "https://coach-pwa-app.vercel.app",
 
+  "http://168.144.149.133",
 ];
 
 
