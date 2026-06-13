@@ -14,6 +14,7 @@ import reportRoutes from "./routes/reportRoutes.js";
 import exercisesRoutes from "./routes/exercisesRoutes.js";
 import dailyReportRoutes from "./routes/dailyReportRoutes.js";
 import coachRoutes from "./routes/coachRoutes.js";
+import adminUserRoutes from "./routes/adminUserRoutes.js";
 
 dotenv.config();
 
@@ -102,6 +103,11 @@ app.use("/api/excercise", exercisesRoutes);
 app.use(
   "/api/daily-report",
   dailyReportRoutes
+);
+
+app.use(
+  "/api/admin-user",
+  adminUserRoutes
 );
 
 app.use("/api/coach", coachRoutes);
