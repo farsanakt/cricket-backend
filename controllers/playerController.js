@@ -14,7 +14,7 @@ export const getPlayerDashboard = async (req, res) => {
           { path: "trainer", select: "name role" },
           { path: "nutritionist", select: "name role" },
 
-          // 🔥 ADD THIS
+          
           {
             path: "players",
             select: "name role email"
@@ -26,7 +26,7 @@ export const getPlayerDashboard = async (req, res) => {
       return res.status(404).json({ message: "Player not found" })
     }
 
-    // 🔥 GET INJURIES
+    
     const injuries = await Injury.find({ player: player._id })
 
     res.json({
@@ -38,4 +38,45 @@ export const getPlayerDashboard = async (req, res) => {
     console.error(error)
     res.status(500).json({ message: error.message })
   }
+}
+
+export const getAllPlayers=async(req,res)=>{
+
+  console.log('i am reached in getallplayers controller')
+
+  try {
+
+    const players=await User.find({role:"player"})
+
+    if (!players) {
+      return res.status(404).json({ message: "Players not found" })
+    }
+
+    res.status(202).json(players)
+    
+  } catch (error) {
+    
+  }
+
+
+}
+
+export const getAllInjuryData=async (req,res)=>{
+
+  console.log("i am reached in getallinjury controller")
+
+  try {
+    
+    const injuryData=await Injury.find()
+
+    if(Injury){
+
+      res.status(202).json(injuryData)
+
+    }
+
+  } catch (error) {
+    
+  }
+
 }

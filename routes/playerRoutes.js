@@ -1,10 +1,12 @@
-import express from "express"
-import { getPlayerDashboard } from "../controllers/playerController.js"
+import express from "express";
+import { getPlayerDashboard, getAllPlayers,getAllInjuryData } from "../controllers/playerController.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/:id", getPlayerDashboard)
+router.get("/allplayers", getAllPlayers);
 
-router
+router.get('/allinjury',getAllInjuryData)
+router.get("/:id", getPlayerDashboard);
 
-export default router
+
+export default router;

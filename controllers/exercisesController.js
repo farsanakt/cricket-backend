@@ -6,7 +6,7 @@ export const fetchExistingWrks = async (req, res) => {
   try {
     const workouts = await Exercise.find();
 
-    console.log(workouts, "this is the data");
+    // console.log(workouts, "this is the data");
 
     // ✅ SEND DATA TO FRONTEND
     res.status(200).json({
