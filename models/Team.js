@@ -1,20 +1,25 @@
 import mongoose from "mongoose"
 
 const teamSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true
+  },
 
-  coach: String,
+  shortName: String,      
 
+  coach: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   physio: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-
   trainer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-
   nutritionist: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
@@ -22,8 +27,9 @@ const teamSchema = new mongoose.Schema({
 
   players: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "Player"
   }]
-})
+
+}, { timestamps: true })
 
 export default mongoose.model("Team", teamSchema)
