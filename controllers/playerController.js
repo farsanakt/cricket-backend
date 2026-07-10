@@ -3,6 +3,32 @@ import Team from "../models/Team.js"
 import Injury from "../models/Injury.js"
 import Player from "../models/Player.js"
 
+
+
+
+// delete player and remove from team's players array
+export const deletePlayer = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const player = await Player.findByIdAndDelete(id)
+
+    if (!player) {
+      return res.status(404).json({ message: "Player not found" })
+    }
+
+    // remove player id from team's players array
+    if (player.team) {
+      await Team.findByIdAndUpdate(player.team, { $pull: { players: player._id } })
+    }
+
+    res.status(202).json({ message: "Player removed", player })
+  } catch (error) {
+    console.log('error in deleting player', error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
 export const getPlayerDashboard = async (req, res) => {
 
     console.log(req.params.id,'koooo')

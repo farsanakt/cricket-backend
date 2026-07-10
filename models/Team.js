@@ -6,7 +6,12 @@ const teamSchema = new mongoose.Schema({
     required: true
   },
 
-  shortName: String,      
+  category: {
+    type: String,
+    enum: ["Senior", "Under-23", "Under-19", "Under-16", "Under-14", "Under-10"]
+  },
+
+  shortName: String,
 
   coach: {
     type: mongoose.Schema.Types.ObjectId,

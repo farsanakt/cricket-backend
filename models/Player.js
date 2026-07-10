@@ -15,8 +15,13 @@ const playerSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      default:'1234'
+      
     },
+   gender: {
+    type: String,
+    enum: ["Male", "Female"]
+  },
 
     number: String,
 
