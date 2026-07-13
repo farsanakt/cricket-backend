@@ -68,6 +68,10 @@ export const deleteTeam = async (req, res) => {
       return res.status(404).json({ message: "Team not found" })
     }
 
+    // remove assessments of players under this team
+    const teamPlayers = await Player.find({ team: id }).select("_id")
+    await Assessment.deleteMany({ player: { $in: teamPlayers.map(p => p._id) } })
+
     // remove players under this team
     await Player.deleteMany({ team: id })
 

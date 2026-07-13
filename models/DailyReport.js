@@ -9,7 +9,7 @@ const dailyReportSchema = new mongoose.Schema(
 
     name: {
       type: String,
-      required: true,
+      
     },
 
     urineColour: String,
