@@ -17,6 +17,7 @@ import coachRoutes from "./routes/coachRoutes.js";
 import adminUserRoutes from "./routes/adminUserRoutes.js";
 import RehabProgramRoutes from './routes/RehabprogramRoutes.js'
 import NutritionRoutes from './routes/nutritionRoutes.js'
+import TrainerRoutes from './routes/trainerRoutes.js'
 
 dotenv.config();
 
@@ -106,6 +107,8 @@ app.use("/api/excercise", exercisesRoutes);
 app.use("/api/rehab",RehabProgramRoutes)
 
 app.use('/api/nutrition',NutritionRoutes)
+
+app.use('/api/trainer',TrainerRoutes)
 
 app.use(
   "/api/daily-report",
