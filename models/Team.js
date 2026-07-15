@@ -13,22 +13,23 @@ const teamSchema = new mongoose.Schema({
 
   shortName: String,
 
-  coach: {
+  // 🔥 all staff roles are now ARRAYS → multiple coaches/physios/trainers/nutritionists per team
+  coach: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  },
-  physio: {
+  }],
+  physio: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  },
-  trainer: {
+  }],
+  trainer: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  },
-  nutritionist: {
+  }],
+  nutritionist: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  },
+  }],
 
   players: [{
     type: mongoose.Schema.Types.ObjectId,

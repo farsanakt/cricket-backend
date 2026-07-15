@@ -10,8 +10,17 @@ import {
   deleteRehabSession,
 } from "../controllers/rehabProgramController.js";
 
+import { getAllConsultations, createConsultation, updateConsultation, deleteConsultation } from "../controllers/consultationController.js"
 import { createAssessment, updateAssessment, deleteAssessment ,getAllAssessments} from "../controllers/assessmentController.js"
 const router = express.Router();
+
+
+
+// consultations
+router.get("/consultations", getAllConsultations)
+router.post("/consultations", createConsultation)
+router.put("/consultations/:id", updateConsultation)
+router.delete("/consultations/:id", deleteConsultation)
 
 router.post("/", createRehabProgram);
 

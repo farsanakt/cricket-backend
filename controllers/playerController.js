@@ -227,3 +227,50 @@ export const updatePlayer = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+// create injury
+export const createInjury = async (req, res) => {
+  try {
+    console.log('this is the create injury body', req.body)
+    const injury = await Injury.create(req.body)
+    res.status(201).json(injury)
+  } catch (error) {
+    console.log('error in creating injury', error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+// update injury (severity, description, status etc.)
+export const updateInjury = async (req, res) => {
+  try {
+    console.log('this is the update injury body', req.body)
+    const { id } = req.params
+    const injury = await Injury.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+
+    if (!injury) {
+      return res.status(404).json({ message: "Injury not found" })
+    }
+
+    res.status(202).json(injury)
+  } catch (error) {
+    console.log('error in updating injury', error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+// delete injury
+export const deleteInjury = async (req, res) => {
+  try {
+    const { id } = req.params
+    const injury = await Injury.findByIdAndDelete(id)
+
+    if (!injury) {
+      return res.status(404).json({ message: "Injury not found" })
+    }
+
+    res.status(202).json({ message: "Injury deleted", injury })
+  } catch (error) {
+    console.log('error in deleting injury', error)
+    res.status(500).json({ message: error.message })
+  }
+}

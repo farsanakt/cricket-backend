@@ -1,13 +1,28 @@
 import Team from "../models/Team.js"
 import Player from "../models/Player.js"
+import Assessment from "../models/Assessment.js"
+
+// normalize a staff field → always an array of ids (handles old single-value payloads too)
+const toIds = (val) => {
+  if (!val) return []
+  const arr = Array.isArray(val) ? val : [val]
+  return arr.filter(Boolean)
+}
 
 // create team with players
 export const createTeam = async (req, res) => {
   try {
     console.log('this is the create team body', req.body)
-    const { name, category,coach, physio, trainer, nutritionist, newPlayers } = req.body
+    const { name, category, coach, physio, trainer, nutritionist, newPlayers } = req.body
 
-    const team = await Team.create({ name, category,coach, physio, trainer, nutritionist })
+    const team = await Team.create({
+      name,
+      category,
+      coach:        toIds(coach),
+      physio:       toIds(physio),
+      trainer:      toIds(trainer),
+      nutritionist: toIds(nutritionist),
+    })
 
     // create players and attach to team
     if (newPlayers && newPlayers.length > 0) {
@@ -30,11 +45,18 @@ export const updateTeam = async (req, res) => {
   try {
     console.log('this is the update team body', req.body)
     const { id } = req.params
-    const { name, coach, physio, trainer, nutritionist, newPlayers } = req.body
+    const { name, category, coach, physio, trainer, nutritionist, newPlayers } = req.body
 
     const team = await Team.findByIdAndUpdate(
       id,
-      { name,category, coach, physio, trainer, nutritionist },
+      {
+        name,
+        category,
+        coach:        toIds(coach),
+        physio:       toIds(physio),
+        trainer:      toIds(trainer),
+        nutritionist: toIds(nutritionist),
+      },
       { new: true, runValidators: true }
     )
 
