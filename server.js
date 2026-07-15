@@ -33,11 +33,12 @@ const allowedOrigins = [
 
   "http://localhost:5174",
 
-  "https://cricket-system-frontend.vercel.app",
+  // "https://cricket-system-frontend.vercel.app",
+  "https://cricket-coach-app.vercel.app",
 
-  "https://player-pwa-app.vercel.app",
+  // "https://player-pwa-app.vercel.app",
 
-  "https://coach-pwa-app.vercel.app",
+  // "https://coach-pwa-app.vercel.app",
   "http://13.48.141.12",
   "http://168.144.149.133",
   "https://main.xxxxx.amplifyapp.com",

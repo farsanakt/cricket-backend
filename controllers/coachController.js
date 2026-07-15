@@ -6,6 +6,31 @@ import Coach from "../models/Coach.js";
 import { getDistance }
 from "geolib";
 
+import CoachDailyReport from "../models/CoachDailyReport.js";
+
+export const createDailyReport = async (req, res) => {
+  try {
+    const report = await CoachDailyReport.create({
+      coach: req.body.coachId,
+      // mood: req.body.mood,
+      // energyLevel: req.body.energyLevel,
+      sessionType: req.body.sessionType,
+      playersCoached: req.body.playersCoached,
+      highlights: req.body.highlights,
+      challenges: req.body.challenges,
+      notes: req.body.notes,
+      submittedAt: req.body.submittedAt,
+    });
+
+    res.status(201).json(report);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Failed to save report",
+    });
+  }
+};
+
 export const updateCoachLocation =
 async (req, res) => {
 
@@ -210,4 +235,22 @@ async (req, res) => {
 
   }
 
+};
+
+export const getCoachReports = async (req, res) => {
+  try {
+    const { coachId } = req.params;
+
+    const reports = await CoachDailyReport.find({
+      coach: coachId,
+    })
+      .sort({ submittedAt: -1 })
+      .limit(10);
+
+    res.status(200).json(reports);
+  } catch (err) {
+    res.status(500).json({
+      message: "Failed to fetch reports",
+    });
+  }
 };

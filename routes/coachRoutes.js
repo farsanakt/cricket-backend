@@ -5,8 +5,9 @@ import {
 } from "../controllers/coachController.js";
 import {
   getAllCoaches,
-  getAllCoachLocations,logoutCoach,
+  getAllCoachLocations,logoutCoach,createDailyReport,getCoachReports
 } from "../controllers/coachController.js";
+
 
 const router = express.Router();
 
@@ -25,5 +26,11 @@ router.post(
   "/logout",
   logoutCoach
 );
+
+
+
+router.post("/daily-report", createDailyReport);
+
+router.get("/daily-report/:coachId", getCoachReports);
 
 export default router;
