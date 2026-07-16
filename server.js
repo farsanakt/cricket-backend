@@ -35,7 +35,7 @@ const allowedOrigins = [
 
   // "https://cricket-system-frontend.vercel.app",
   "https://cricket-coach-app.vercel.app",
-
+"https://cricket-coach-l0hat0g89-ffarsanakt-gmailcoms-projects.vercel.app",
   // "https://player-pwa-app.vercel.app",
 
   // "https://coach-pwa-app.vercel.app",
