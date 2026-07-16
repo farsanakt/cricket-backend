@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+
 
 const playerSchema = new mongoose.Schema(
   {
@@ -16,7 +16,7 @@ const playerSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      default:'1234'
+      default:'$2b$10$SnCQK2lMM3iXvabGzxXE3OKxvhSafQp/ZGgDexbcQdDe/0u38Y1EO'
       
     },
    gender: {
@@ -63,11 +63,6 @@ const playerSchema = new mongoose.Schema(
   }
 );
 
-playerSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
 
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
 
 export default mongoose.model("Player", playerSchema);
