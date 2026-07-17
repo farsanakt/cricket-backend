@@ -24,7 +24,8 @@ const trainingSessionSchema = new mongoose.Schema({
     duration: String,
     equipment: String,
     description: String,
-    load: String
+    load: String,
+    gifUrl: String 
   }]
 
 }, { timestamps: true })
