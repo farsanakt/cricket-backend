@@ -20,6 +20,12 @@ const consultationSchema = new mongoose.Schema({
   treatmentPlan: String,
   advice: String,
 
+  playerStatus: {
+    type: String,
+    enum: ["Available", "Injured", "Niggles", "Rest"],
+  },
+  consultedBy: String,
+
   followUpDate: Date
 
 }, { timestamps: true })
